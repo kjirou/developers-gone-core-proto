@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/kjirou/developers-gone-core-proto/issues"
   },
-  "homepage": "https://github.com/kjirou/developers-gone-core-proto#readme"
+  "homepage": "https://github.com/kjirou/developers-gone-core-proto#readme",
+  "private": true
 }
