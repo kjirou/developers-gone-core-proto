@@ -1,1 +1,1 @@
-# developers-gone
+# developers-gone-core-proto
