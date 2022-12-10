@@ -1,0 +1,20 @@
+{
+  "name": "developers-gone-core-proto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjirou/developers-gone-core-proto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kjirou/developers-gone-core-proto/issues"
+  },
+  "homepage": "https://github.com/kjirou/developers-gone-core-proto#readme"
+}
