@@ -1,6 +1,71 @@
 type DevelopmentKind = "design" | "management" | "programming";
 
-type SkillKind = "design-architecture" | "design-markup" | "design-ui";
+type DevelopmentSkill = {
+  id: string;
+  name: string;
+  shortName: string;
+  substituteFor: { id: DevelopmentSkill["id"]; rate: number }[];
+};
+
+const developmentSkills: DevelopmentSkill[] = [
+  {
+    id: "ai",
+    name: "Artificial Intelligence",
+    shortName: "AI",
+    substituteFor: [],
+  },
+  {
+    id: "back",
+    name: "Back-end",
+    shortName: "Back",
+    substituteFor: [
+      { id: "front", rate: 0.25 },
+      { id: "infra", rate: 0.25 },
+      { id: "legacy", rate: 0.25 },
+      { id: "lowlevel", rate: 0.25 },
+    ],
+  },
+  {
+    id: "front",
+    name: "Front-end",
+    shortName: "Front",
+    substituteFor: [
+      { id: "back", rate: 0.25 },
+      { id: "design", rate: 0.25 },
+    ],
+  },
+  {
+    id: "infra",
+    name: "Infrastructure",
+    shortName: "Infra",
+    substituteFor: [
+      { id: "back", rate: 0.25 },
+      { id: "legacy", rate: 0.25 },
+    ],
+  },
+  {
+    id: "lecacy",
+    name: "Legacy System",
+    shortName: "Legacy",
+    substituteFor: [{ id: "lowlevel", rate: 0.25 }],
+  },
+  {
+    id: "lowlevel",
+    name: "Low-level Programming",
+    shortName: "Low",
+    substituteFor: [
+      { id: "back", rate: 0.25 },
+      { id: "infra", rate: 0.25 },
+      { id: "legacy", rate: 0.25 },
+    ],
+  },
+  {
+    id: "design",
+    name: "Design",
+    shortName: "Design",
+    substituteFor: [{ id: "front", rate: 0.25 }],
+  },
+];
 
 type Development = {
   value: number;
