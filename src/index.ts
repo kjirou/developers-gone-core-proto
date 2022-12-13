@@ -1,80 +1,70 @@
-type DevelopmentKind = "design" | "management" | "programming";
-
 type DevelopmentSkill = {
+  defaultSortOrder: number;
   id: string;
   name: string;
   shortName: string;
-  substituteFor: { id: DevelopmentSkill["id"]; rate: number }[];
 };
 
 const developmentSkills: DevelopmentSkill[] = [
   {
-    id: "ai",
-    name: "Artificial Intelligence",
-    shortName: "AI",
-    substituteFor: [],
-  },
-  {
     id: "back",
     name: "Back-end",
     shortName: "Back",
-    substituteFor: [
-      { id: "front", rate: 0.25 },
-      { id: "infra", rate: 0.25 },
-      { id: "legacy", rate: 0.25 },
-      { id: "lowlevel", rate: 0.25 },
-    ],
+    defaultSortOrder: 2,
   },
   {
-    id: "front",
-    name: "Front-end",
-    shortName: "Front",
-    substituteFor: [
-      { id: "back", rate: 0.25 },
-      { id: "design", rate: 0.25 },
-    ],
-  },
-  {
-    id: "infra",
-    name: "Infrastructure",
-    shortName: "Infra",
-    substituteFor: [
-      { id: "back", rate: 0.25 },
-      { id: "legacy", rate: 0.25 },
-    ],
-  },
-  {
-    id: "lecacy",
-    name: "Legacy System",
-    shortName: "Legacy",
-    substituteFor: [{ id: "lowlevel", rate: 0.25 }],
-  },
-  {
-    id: "lowlevel",
-    name: "Low-level Programming",
-    shortName: "Low",
-    substituteFor: [
-      { id: "back", rate: 0.25 },
-      { id: "infra", rate: 0.25 },
-      { id: "legacy", rate: 0.25 },
-    ],
+    id: "data",
+    name: "Data Analysis",
+    shortName: "Data",
+    defaultSortOrder: 8,
   },
   {
     id: "design",
     name: "Design",
     shortName: "Design",
-    substituteFor: [{ id: "front", rate: 0.25 }],
+    defaultSortOrder: 5,
+  },
+  {
+    id: "front",
+    name: "Front-end",
+    shortName: "Front",
+    defaultSortOrder: 4,
+  },
+  {
+    id: "infra",
+    name: "Infrastructure",
+    shortName: "Infra",
+    defaultSortOrder: 3,
+  },
+  {
+    id: "lecacy",
+    name: "Legacy System",
+    shortName: "Legacy",
+    defaultSortOrder: 6,
+  },
+  {
+    id: "lowlevel",
+    name: "Low-level Programming",
+    shortName: "Low",
+    defaultSortOrder: 7,
+  },
+  {
+    id: "pm",
+    name: "Project Management",
+    shortName: "PM",
+    defaultSortOrder: 1,
   },
 ];
 
 type Development = {
   value: number;
+  //kind:
 };
 
 type Project = {
   // TODO: 作業内容のモデリング
   //       いろいろな作業の種類があり、それぞれに得意な職種がいるって方が良さそう
-  necessaryDevelopments: { [k in DevelopmentKind]: number };
+  necessaryDevelopments: Development[];
 };
 
 type Game = {
