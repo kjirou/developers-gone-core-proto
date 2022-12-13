@@ -56,14 +56,35 @@ const developmentSkills: DevelopmentSkill[] = [
   },
 ];
 
-type Development = {
-  value: number;
-  //kind:
+type DevelopmentKind = {
+  appropriateSkills: {
+    developmentSkillId: DevelopmentSkill["id"];
+    efficiency: number;
+  }[];
+  name: string;
 };
 
+// TODO: 開発の種類を介すのは冗長かもしれない。絵合わせをしたいだけなので開発者直接指定の方がいいのでは。
+const developmentKinds: DevelopmentKind[] = [
+  {
+    name: "",
+    appropriateSkills: [
+      {
+        developmentSkillId: "pm",
+        efficiency: 100,
+      },
+    ],
+  },
+];
+
+type Development = {
+  cost: number;
+  kind: DevelopmentKind;
+  value: number;
+};
+
+// TODO: 受注した案件と受注候補の案件がある。
 type Project = {
-  // TODO: 作業内容のモデリング
-  //       いろいろな作業の種類があり、それぞれに得意な職種がいるって方が良さそう
   necessaryDevelopments: Development[];
 };
 
