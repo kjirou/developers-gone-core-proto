@@ -56,30 +56,14 @@ const developmentSkills: DevelopmentSkill[] = [
   },
 ];
 
-type DevelopmentKind = {
-  appropriateSkills: {
-    developmentSkillId: DevelopmentSkill["id"];
-    efficiency: number;
-  }[];
-  name: string;
-};
-
-// TODO: 開発の種類を介すのは冗長かもしれない。絵合わせをしたいだけなので開発者直接指定の方がいいのでは。
-const developmentKinds: DevelopmentKind[] = [
-  {
-    name: "",
-    appropriateSkills: [
-      {
-        developmentSkillId: "pm",
-        efficiency: 100,
-      },
-    ],
-  },
-];
-
+/**
+ * NOTE:
+ *   - 直列・並行でやらないといけない仕事は、Development 同士のリレーションで表現する。
+ *   - 名前をつけるのはやめる。必要スキルが名前的に表示されてた方が見やすいはずで、フレーバー上で活かすのを考えるのも難しい。
+ */
 type Development = {
   cost: number;
-  kind: DevelopmentKind;
+  necessarySkillId: string;
   value: number;
 };
 
