@@ -17,8 +17,9 @@
 //   - 最初は自分だけで徐々に人を増やす感じ
 //   - スピードと品質見たいのを表現できそう
 //
-// A か C になりそう。
 // B はエモいのを表現するが主になるので、自分には難しそう。
+//
+// カードゲーム風の A にしましょう。
 
 type DevelopmentSkill = {
   defaultSortOrder: number;
@@ -70,12 +71,6 @@ const developmentSkills: DevelopmentSkill[] = [
     shortName: "Low",
     defaultSortOrder: 7,
   },
-  {
-    id: "pm",
-    name: "Project Management",
-    shortName: "PM",
-    defaultSortOrder: 1,
-  },
 ];
 
 /**
@@ -94,9 +89,27 @@ type Project = {
   necessaryDevelopments: Development[];
 };
 
+type Developer = {
+  developmentSkills:
+    | [DevelopmentSkill]
+    | [DevelopmentSkill, DevelopmentSkill]
+    | [DevelopmentSkill, DevelopmentSkill, DevelopmentSkill];
+  id: string;
+  isEmployed: boolean;
+  /** プロジェクトへ割り当てる度に減少する。不足時はプロジェクトへ割り当てられない。 */
+  motivation: number;
+  name: string;
+  /** 給料。ターン毎に資金から差し引かれる。 */
+  salary: number;
+};
+
 type Game = {
-  /** 現在のターン番号。1 開始の連番。フレーバー上は「週」になる。 */
+  /** 資金。 */
+  capital: number;
+  /** 現在のターン番号。1 開始の連番。フレーバー上は「月」になる。 */
   currentTurnNumber: number;
+  /** 開発者リスト。未雇用・雇用済みの両方を含む。 */
+  developers: Developer[];
   /** 0 以上 1 未満の乱数を生成する関数。 */
   getRandom: () => number;
 };
@@ -107,8 +120,10 @@ const proceedToNextTurn = (game: Game): Game => {
 };
 
 let game: Game = {
-  currentTurnNumber: 1,
   getRandom: () => Math.random(),
+  currentTurnNumber: 1,
+  capital: 0,
+  developers: [],
 };
 game = proceedToNextTurn(game);
 game = proceedToNextTurn(game);
