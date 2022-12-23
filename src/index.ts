@@ -94,6 +94,10 @@ type Developer = {
     | [DevelopmentSkill]
     | [DevelopmentSkill, DevelopmentSkill]
     | [DevelopmentSkill, DevelopmentSkill, DevelopmentSkill];
+  // NOTE: 人材の募集は、人材募集画面があってそこで常に獲得できる想定。3 ターンなどの一定期間で全員更新される。
+  //       常に獲得可能なのは、ユーザーの選択肢を増やすため。一定期間で全員同時に更新されるのは、ユーザーの確認の手間を減らすため。
+  /** ゲームから退出したか。isEmployed が true なら雇用後に退職したことを示し、false なら雇われなくて応募期間を経過したことを示す。 */
+  hasGone: boolean;
   id: string;
   isEmployed: boolean;
   /** プロジェクトへ割り当てる度に減少する。不足時はプロジェクトへ割り当てられない。 */
@@ -108,7 +112,7 @@ type Game = {
   capital: number;
   /** 現在のターン番号。1 開始の連番。フレーバー上は「月」になる。 */
   currentTurnNumber: number;
-  /** 開発者リスト。未雇用・雇用済みの両方を含む。 */
+  /** 開発者リスト。未雇用・雇用済み・非活性化の全ての状態のものを含む。 */
   developers: Developer[];
   /** 0 以上 1 未満の乱数を生成する関数。 */
   getRandom: () => number;
